@@ -1,0 +1,25 @@
+<div class="card text-white bg-dark mb-3">
+    <div class="card-header">
+        <h2>Pokédex</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-stripped table-dark">
+            <thead>
+                <tr>
+                    <th><p>Nombre</p></th>
+                    <th><p>Descripción</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pokemon of pokemonList">
+                    <td>
+                    <img class="img-fluid rounded mx-auto d-block" alt={{pokemon.name}}
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" />
+                            <p>{{pokemon.name}}</p>
+                    </td>
+                    <td><a href="url">{{pokemon.url}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
