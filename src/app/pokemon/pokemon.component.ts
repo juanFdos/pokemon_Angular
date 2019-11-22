@@ -1,4 +1,5 @@
 import { Pokemon } from './pokemon';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from './pokemon.service';
 
@@ -9,17 +10,27 @@ import { PokemonService } from './pokemon.service';
 })
 export class PokemonComponent implements OnInit {
 
-  public pokemonList: Array<Pokemon>;
+  public pokemonList: Array<Array<Pokemon>>;
+  public paginator: any;
 
-  constructor(private pokemonService: PokemonService) {
-
+  constructor(private pokemonService: PokemonService, private activatedRoute: ActivatedRoute) {
+    this.pokemonList = new Array();
   }
 
   ngOnInit() {
-    this.pokemonService.getPokemon().subscribe(
-      pokemons => this.pokemonList = pokemons
+    this.activatedRoute.paramMap.subscribe(params => {
+      let page = Number.parseInt(params.get('page'), 10);
+      if (!page) {
+        page = 0;
+      }
+      this.pokemonService.getPokemon(page).subscribe(
+        PokemonResponse => {
+          this.pokemonList = PokemonResponse.pokemons;
+          this.paginator = PokemonResponse.data;
+        }
+      );
+    }
     );
-
   }
 
 }

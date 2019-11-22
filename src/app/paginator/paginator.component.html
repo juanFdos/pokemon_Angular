@@ -1,0 +1,27 @@
+<ul class="list-group list-group-horizontal-sm" *ngIf="pagesList?.length > 0" style=" overflow: scroll; padding: 0; margin-bottom: 0;">
+
+    <li class="list-group-item list-group-item-dark" *ngIf="data.currentPage > 0">
+        <a [routerLink]="['/pokedex/page',data.currentPage - 1 ]">&laquo;</a>
+    </li>
+
+    <li class="list-group-item list-group-item-dark"
+        [ngClass]="data.currentPage === 0 ? 'disabled list-group-item list-group-item-dark': 'list-group-item list-group-item-dark'">
+        <a [routerLink]="['/pokedex/page',0]">First</a>
+    </li>
+
+
+    <li class="list-group-item list-group-item-dark" *ngFor="let page of pagesList"
+        [ngClass]="page - 1 === data.currentPage ? 'active': ''">
+        <span *ngIf="page - 1 === data.currentPage ">{{page}} </span>
+        <a *ngIf="page - 1 != data.currentPage" [routerLink]="['/pokedex/page',page - 1 ]">{{page}}</a>
+    </li>
+
+    <li class="list-group-item list-group-item-dark"
+        [ngClass]="data.currentPage === data.pages - 1  ? 'disabled list-group-item list-group-item-dark': 'list-group-item list-group-item-dark'">
+        <a [routerLink]="['/pokedex/page',data.pages - 1]">Last</a>
+    </li>
+
+    <li class="list-group-item list-group-item-dark" *ngIf="data.currentPage < data.pages - 1">
+        <a [routerLink]="['/pokedex/page',data.currentPage + 1 ]">&raquo;</a>
+    </li>
+</ul>

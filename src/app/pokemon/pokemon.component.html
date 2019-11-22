@@ -4,22 +4,20 @@
     </div>
     <div class="card-body">
         <table class="table table-bordered table-stripped table-dark">
-            <thead>
-                <tr>
-                    <th><p>Nombre</p></th>
-                    <th><p>Descripción</p></th>
-                </tr>
-            </thead>
             <tbody>
-                <tr *ngFor="let pokemon of pokemonList">
-                    <td>
-                    <img class="img-fluid rounded mx-auto d-block" alt={{pokemon.name}}
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" />
+                <tr *ngFor="let row of pokemonList">
+                    <td *ngFor="let pokemon of row">
+                        <button class="btn btn-link">
+                            <img class="img-fluid rounded mx-auto d-block" alt={{pokemon.name}}
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" />
                             <p>{{pokemon.name}}</p>
+                        </button>
                     </td>
-                    <td><a href="url">{{pokemon.url}}</a></td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="container">
+        <app-paginator *ngIf="paginator" [data]=paginator></app-paginator>
     </div>
 </div>
