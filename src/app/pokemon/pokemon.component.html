@@ -16,8 +16,15 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="container">
-        <app-paginator *ngIf="paginator" [data]=paginator></app-paginator>
+        <div class="row container-fluid">
+            <div class="col col-xs-4">
+            </div>
+            <div class="col col-md-auto align-self-center">
+                <app-paginator *ngIf="paginator" [data]=paginator></app-paginator>
+            </div>
+            <div class="col col-xs-4">
+            </div>
+        </div>
+
     </div>
 </div>
